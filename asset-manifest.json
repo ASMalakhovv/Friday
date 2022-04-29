@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/Friday/static/css/main.073c9b0a.css",
-    "main.js": "/Friday/static/js/main.1237f555.js",
-    "static/js/787.28cb0dcd.chunk.js": "/Friday/static/js/787.28cb0dcd.chunk.js",
-    "static/media/logo.svg": "/Friday/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/Friday/static/css/main.c260162d.css",
+    "main.js": "/Friday/static/js/main.eb77b831.js",
+    "static/js/787.587502bc.chunk.js": "/Friday/static/js/787.587502bc.chunk.js",
+    "static/media/pen_icon.svg": "/Friday/static/media/pen_icon.0ea602c07c7c58132fe4ff0b85ee4ee8.svg",
     "index.html": "/Friday/index.html",
-    "main.073c9b0a.css.map": "/Friday/static/css/main.073c9b0a.css.map",
-    "main.1237f555.js.map": "/Friday/static/js/main.1237f555.js.map",
-    "787.28cb0dcd.chunk.js.map": "/Friday/static/js/787.28cb0dcd.chunk.js.map"
+    "static/media/select_icon.svg": "/Friday/static/media/select_icon.11da934fce4e9dcc4c82560ed70e451e.svg",
+    "main.c260162d.css.map": "/Friday/static/css/main.c260162d.css.map",
+    "main.eb77b831.js.map": "/Friday/static/js/main.eb77b831.js.map",
+    "787.587502bc.chunk.js.map": "/Friday/static/js/787.587502bc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.1237f555.js"
+    "static/css/main.c260162d.css",
+    "static/js/main.eb77b831.js"
   ]
 }
