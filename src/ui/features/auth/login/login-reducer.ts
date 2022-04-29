@@ -2,8 +2,8 @@ export type InitStateType = typeof initState
 
 const initState = {}
 
-export type TestAction = { type: '', };
-export const testReducer = (state: InitStateType = initState, action: TestAction): InitStateType => {
+export type LoginAction = { type: '', };
+export const loginReducer = (state: InitStateType = initState, action: LoginAction): InitStateType => {
     switch (action.type) {
         case '': {
             return state

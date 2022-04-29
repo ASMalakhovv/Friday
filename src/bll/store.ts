@@ -1,24 +1,30 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {ProfileAction, profileReducer} from "../ui/features/profile/profile-reducer";
-import {TestAction, testReducer} from "../ui/features/test/test-reducer";
-import {AuthAction, authReducer} from "../ui/features/auth/auth-reducer";
+import {registrationReducer, RegistrationAction} from "../ui/features/auth/register/registration-reducer";
+import {LoginAction, loginReducer} from "../ui/features/auth/login/login-reducer";
+import {PasswordNewAction, passwordNewReducer} from "../ui/features/auth/password-new/passwordNew-reducer";
+import {PasswordResetAction, passwordResetReducer} from "../ui/features/auth/password-reset/passwordReset-reducer";
 
 
 //TYPE
 export type AppStoreType = ReturnType<typeof reducers>
 export type AppThunkDispatch = ThunkDispatch<AppStoreType, unknown, ActionType>;
-export type ActionType = AuthAction | ProfileAction | TestAction
+export type ActionType = LoginAction | PasswordNewAction |
+    PasswordResetAction | ProfileAction | RegistrationAction
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
     AppStoreType,
     unknown,
     ActionType>
 
+
 //STATE
 const reducers = combineReducers({
-    auth: authReducer,
+    login: loginReducer,
+    passwordNew: passwordNewReducer,
+    passwordReset: passwordResetReducer,
     profile: profileReducer,
-    test: testReducer
+    registration: registrationReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))

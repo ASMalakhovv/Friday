@@ -2,8 +2,8 @@ export type InitStateType = typeof initState
 
 const initState = {}
 
-export type AuthAction = { type: '', };
-export const authReducer = (state: InitStateType = initState, action: AuthAction): InitStateType => {
+export type PasswordNewAction = { type: '', };
+export const passwordNewReducer = (state: InitStateType = initState, action: PasswordNewAction): InitStateType => {
     switch (action.type) {
         case '': {
             return state

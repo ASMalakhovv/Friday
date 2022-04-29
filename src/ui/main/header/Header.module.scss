@@ -1,8 +1,10 @@
 @import 'src/ui/common/styles/sass/mixins';
 
 .navLinks {
-  @include heightWidth(100%, 250px);
-  @include displayFlex(row, space-between);
+  @include heightWidth(100%, 300px);
+  border-right: 1px solid #C8D1CC;
+  box-shadow: 2px 0px 3px 0px #C8D1CC;
+  @include displayFlex(column, space-between);
   padding: 10px 25px;
 
   a:visited {

@@ -1,7 +1,7 @@
 export function Profile() {
     return (
         <div>
-            PROFILE
+            Profile
         </div>
     );
 }
