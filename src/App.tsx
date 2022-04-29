@@ -1,13 +1,12 @@
-import Header from "./components/header/Header";
-import Pages from "./components/pages/Pages";
+import {Main} from "./ui/main/Main";
+import s from './App.module.scss'
 
 function App() {
-  return (
-    <div>
-      <Header/>
-      <Pages/>
-    </div>
-  );
+    return (
+        <div className={s.app}>
+            <Main/>
+        </div>
+    );
 }
 
 export default App;
