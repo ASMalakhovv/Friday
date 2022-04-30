@@ -1,7 +1,7 @@
 export function Register() {
     return (
         <div>
-            Registration default
+            Registration default зкщиф
         </div>
     );
 }
