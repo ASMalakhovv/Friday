@@ -1,0 +1,7 @@
+@import "src/ui/common/styles/sass/mixins";
+
+.registerContainer {
+  background: aquamarine;
+  @include heightWidth(70vh,100%)
+
+}

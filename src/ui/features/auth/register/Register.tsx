@@ -1,7 +1,11 @@
+import s from './Register.module.scss'
+
 export function Register() {
     return (
-        <div>
-            Registration default зкщиф
+        <div className={s.registerContainer}>
+            <div className={s.registerBlock}>
+
+            </div>
         </div>
     );
 }
