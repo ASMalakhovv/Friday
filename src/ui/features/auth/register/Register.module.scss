@@ -3,11 +3,13 @@
 .registerContainer {
   background: aquamarine;
   @include heightWidth(80vh, 100%);
-  @include displayFlex(row,center,center);
-  .registerBlock{
-    @include displayFlex(column,space-around,center);
-    @include heightWidth(540px,413px);
+  @include displayFlex(row, center, center);
+
+  .registerBlock {
+    @include displayFlex(column, space-around, center);
+    @include heightWidth(540px, 413px);
     background: #446bc9;
     border-radius: 8px;
+
   }
 }

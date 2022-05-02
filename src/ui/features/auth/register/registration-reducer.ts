@@ -1,6 +1,9 @@
 export type InitStateType = typeof initState
 
-const initState = {}
+
+const initState = {
+    isDisable: false
+}
 
 export type RegistrationAction = { type: '', };
 export const registrationReducer = (state: InitStateType = initState, action: RegistrationAction): InitStateType => {
