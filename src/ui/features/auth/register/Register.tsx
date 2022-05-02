@@ -1,15 +1,14 @@
 import s from './Register.module.scss'
 import SuperButton from "../../../common/SuperButton/SuperButton";
 import {ChangeEvent, useState} from "react";
-import {useSelector} from "react-redux";
-import {AppStoreType} from "../../../../bll/store";
+import {useAppDispatch} from '../../../../hooks/react-redux';
 
 export function Register() {
     const [valueEmail, setValueEmail] = useState("")
     const [valueOnePassword, setValueOnePassword] = useState("")
     const [valueTwoPassword, setValueTwoPassword] = useState("")
 
-    const isDisable = useSelector<AppStoreType, boolean>(state => state.registration.isDisable)
+    const dispatch = useAppDispatch()
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.dataset.input) {
@@ -24,8 +23,7 @@ export function Register() {
         }
     }
 
-    const sendRegistrationData = (email: string, passwordOne: string,
-                                  passwordTwo: string) => {
+    const sendRegistrationData = () => {
 
     }
 
@@ -51,7 +49,7 @@ export function Register() {
                 <SuperButton onClick={() => console.log(valueEmail, valueOnePassword)}>
                     Cancel
                 </SuperButton>
-                <SuperButton disabled={isDisable}>
+                <SuperButton>
                     Register
                 </SuperButton>
             </div>
