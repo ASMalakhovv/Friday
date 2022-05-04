@@ -1,7 +1,7 @@
 import s from './Login.module.scss'
 import SuperCheckbox from "../../../common/SuperCheckbox/SuperCheckbox";
 import SuperButton from "../../../common/SuperButton/SuperButton";
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 import {path} from "../../../main/routes/Pages";
 import SuperInputText from "../../../common/SuperInputText/SuperInputText";
 import {useEffect, useState} from "react";
@@ -15,10 +15,11 @@ import {RequestStatusType} from "./appReducer";
 
 
 export function Login() {
-    const isLoggedIn = useSelector<AppStoreType, InitStateType>(state => state.login)
+    const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn)
     const appError = useSelector<AppStoreType, string | null>(state => state.app.error)
     const appStatus = useSelector<AppStoreType, RequestStatusType>(state => state.app.status)
     const dispatch = useAppDispatch()
+
     //==============================================================================
     const [email, setEmail] = useState('')
     const changeEmailField = (newEmail: string) => {
@@ -33,6 +34,13 @@ export function Login() {
         setRememberMe(newRememberMe)
     }
     //==============================================================================
+
+
+    if (isLoggedIn) {
+        return <Navigate to={path.profile}/>
+    }
+
+
 
     const data = {email, password, rememberMe}
 
