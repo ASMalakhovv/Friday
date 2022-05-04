@@ -44,6 +44,7 @@ button[disabled] {
     background-color: #F0F0F1;
     color: #666666;
     opacity: 0.5;
+    cursor: default;
 }
 
 

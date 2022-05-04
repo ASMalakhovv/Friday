@@ -12,7 +12,7 @@ export type AppStoreType = ReturnType<typeof reducers>
 export type AppThunkDispatch = ThunkDispatch<AppStoreType, unknown, ActionType>;
 export type ActionType = LoginAction | PasswordNewAction |
     PasswordResetAction | ProfileAction | RegistrationAction
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
+export type AppThunk<ReturnType> = ThunkAction<ReturnType,
     AppStoreType,
     unknown,
     ActionType>
