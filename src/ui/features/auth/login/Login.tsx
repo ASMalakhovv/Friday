@@ -5,7 +5,7 @@ export function Login() {
     return (
         <div className={s.loginBlock}>
             <div className={s.loginContainer}>
-                Login---dwadadawddwdddd
+                Login---dwadadawddw
             </div>
         </div>
     );
