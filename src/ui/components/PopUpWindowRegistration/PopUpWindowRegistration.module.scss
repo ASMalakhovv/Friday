@@ -1,0 +1,28 @@
+@import "src/ui/common/styles/sass/variables";
+@import "src/ui/common/styles/sass/mixins";
+
+.popUpBlock {
+  @include displayFlex(row, center);
+
+  .popUpMain {
+    @include displayFlex(column, space-around, center);
+
+    .closeSpan {
+      position: absolute;
+      top: 8px;
+      left: 318px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  }
+
+  h2 {
+    /*font-family: $fontFamilyHeader;*/
+    margin: 0;
+  }
+
+  p {
+    /*font-family: $fontFamilyText;*/
+    margin: 0;
+  }
+}

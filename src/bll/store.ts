@@ -6,7 +6,7 @@ import {LoginAction, loginReducer} from "../ui/features/auth/login/loginReducer"
 import {PasswordNewAction, passwordNewReducer} from "../ui/features/auth/password-new/passwordNew-reducer";
 import {PasswordResetAction, passwordResetReducer} from "../ui/features/auth/password-reset/passwordReset-reducer";
 import {useDispatch} from "react-redux";
-import {appReducer} from "../ui/features/auth/login/appReducer";
+import {appReducer} from "../app/appReducer";
 
 
 //TYPE

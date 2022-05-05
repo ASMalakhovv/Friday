@@ -1,24 +1,25 @@
 import s from './Login.module.scss'
+import eye from "../../../assets/image/eye.png";
 import SuperCheckbox from "../../../common/SuperCheckbox/SuperCheckbox";
 import SuperButton from "../../../common/SuperButton/SuperButton";
-import {Navigate, NavLink} from "react-router-dom";
+import {Navigate,Link, NavLink} from "react-router-dom";
 import {path} from "../../../main/routes/Pages";
 import SuperInputText from "../../../common/SuperInputText/SuperInputText";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {InitStateType, loginReducer, loginTC} from "./loginReducer";
 import {AppStoreType, useAppDispatch} from "../../../../bll/store";
-import {RequestStatusType} from "./appReducer";
-
-
-
+import {RequestStatusType, setAppErrorAC} from "../../../../app/appReducer";
+import {ProgressBar} from "../../../components/ProgressBar/ProgressBar";
+import PopUpWindowRegistration from "../../../components/PopUpWindowRegistration/PopUpWindowRegistration";
 
 
 export function Login() {
     const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn)
     const appError = useSelector<AppStoreType, string | null>(state => state.app.error)
     const appStatus = useSelector<AppStoreType, RequestStatusType>(state => state.app.status)
-    const dispatch = useAppDispatch()
+    const thunkDispatch = useAppDispatch()
+    const actionDispatch = useDispatch()
 
     //==============================================================================
     const [email, setEmail] = useState('')
@@ -33,42 +34,77 @@ export function Login() {
     const changeRememberMe = (newRememberMe: boolean) => {
         setRememberMe(newRememberMe)
     }
+    const [typePassword, setTypePassword] = useState('password')
     //==============================================================================
-
-
-    if (isLoggedIn) {
-        return <Navigate to={path.profile}/>
-    }
-
-
-
     const data = {email, password, rememberMe}
 
+    //COMPUTING STYLES
+    const classNameInput = appError ? `${s.error}` : ''
+    const classNameLink = appError ? `${s.disabledLink}` : ''
+
+    // CALLBACKS
     const onClickLogin = () => {
-        dispatch(loginTC(data))
+        thunkDispatch(loginTC(data))
+    }
+    const closePopUpWindow = useCallback(() => {
+        appError && actionDispatch(setAppErrorAC(null))
+    }, [appError])
+
+    const changeTypeForInput = () => {
+        setTypePassword(typePassword === 'text' ? 'password' : 'text')
     }
 
-
     return (
-        <div className={s.loginBlock}>
-            <div className={s.loginContainer}>
-                <div>
-                    It-incubator
-                    Sign In
-                </div>
-                <div>
-                    <SuperInputText type={'email'} value={email} onChangeText={changeEmailField}/>
-                    <SuperInputText type={'password'} value={password} onChangeText={changePasswordField}/>
-                    <SuperCheckbox onChangeChecked={changeRememberMe}/>
-                </div>
-                <div>Error: {appError}</div>
-                <div>
-                    <SuperButton disabled={appStatus === 'loading'} callback={()=>onClickLogin()}>Login</SuperButton>
-                    Don`t have an account?
-                    <NavLink to={path.signup}>Sign Up</NavLink>
+        isLoggedIn
+            ?
+            <Navigate to={path.profile}/>
+            :
+            <div className={s.loginBlock}>
+                <div className={s.loginContainer}>
+                    <div>
+                        {isLoggedIn && <ProgressBar/>}
+                    </div>
+                    <div className={s.header}>
+                        <h1>It-incubator</h1>
+                        <h2>Sign In</h2>
+
+                    </div>
+                    <div className={s.popUpContainer}>
+                        <div className={s.popUp}>
+                            {appError && <PopUpWindowRegistration value={appError} callback={closePopUpWindow}
+                                                               className={s.popUp}
+                                                               header='Error'
+                            />}
+                        </div>
+                    </div>
+                    <div className={s.inputBlock}>
+
+                        <div className={s.inputContainer}>
+                            <SuperInputText type={'email'} label={'Email'} value={email} onChangeText={changeEmailField}/>
+                        </div>
+                        <div className={s.inputContainer}>
+                            <SuperInputText type={typePassword} label={'Password'} value={password} onChangeText={changePasswordField}/>
+                            <img src={eye} onClick={changeTypeForInput}/>
+                        </div>
+
+
+                        {/*<div className={s.inputContainer}>*/}
+                        {/*    <SuperCheckbox onChangeChecked={changeRememberMe}/>*/}
+                        {/*</div>*/}
+                    </div>
+                    <div className={s.linkForgotPass}>
+                        <Link to={path.passwordReset} className={classNameLink}>Forgot Password</Link>
+                    </div>
+                    <div className={s.control}>
+                        <SuperButton disabled={appStatus === 'loading'}
+                                     callback={() => onClickLogin()}>
+                            Login
+                        </SuperButton>
+                        <p>Don`t have an account?</p>
+                        <NavLink className={classNameLink} to={path.signup} >Sign Up</NavLink>
+                    </div>
                 </div>
             </div>
-        </div>
     );
 }
 

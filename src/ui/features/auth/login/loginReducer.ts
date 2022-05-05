@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {authAPI, LoginParamsType} from "../../../../api/cards-api";
 import {AppThunkDispatch} from "../../../../bll/store";
-import {setAppErrorAC, setAppStatusAC} from "./appReducer";
+import {setAppErrorAC, setAppStatusAC} from "../../../../app/appReducer";
 
 
 export type LoginAction = ReturnType <typeof setIsLoggedInAC>

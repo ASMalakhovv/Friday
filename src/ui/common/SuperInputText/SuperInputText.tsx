@@ -11,6 +11,8 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     onEnter?: () => void
     error?: string
     spanClassName?: string
+    label?: string
+    type?: string
 }
 
 const SuperInputText: React.FC<SuperInputTextPropsType> = (
@@ -19,7 +21,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         onChange, onChangeText,
         onKeyPress, onEnter,
         error,
-        className, spanClassName,value,
+        className, spanClassName,value, label,
 
         ...restProps// все остальные пропсы попадут в объект restProps
     }
@@ -43,6 +45,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
 
     return (
         <>
+            <label>{label}</label>
             <input
                 type={type}
                 value={value}
