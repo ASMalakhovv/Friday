@@ -13,6 +13,10 @@ export const authAPI = {
             ('/auth/register', {email: email, password: password})
             .then((res) => res)
             .catch(err => {
+                if (axios.isAxiosError(err) && err.response) {
+                    console.log(err.response)
+
+                }
                 throwNewError(err)
             })
     }
