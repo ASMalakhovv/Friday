@@ -2,7 +2,6 @@ import Header from "./header/Header";
 import Pages from "./routes/Pages";
 import s from './Main.module.scss'
 
-// test branch
 
 export const Main = () => {
     return (

@@ -5,14 +5,21 @@ import {registrationReducer, RegistrationAction} from "../ui/features/auth/regis
 import {LoginAction, loginReducer} from "../ui/features/auth/login/login-reducer";
 import {PasswordNewAction, passwordNewReducer} from "../ui/features/auth/password-new/passwordNew-reducer";
 import {PasswordResetAction, passwordResetReducer} from "../ui/features/auth/password-reset/passwordReset-reducer";
+import {AppAction, appReducer} from "../app/app-reducer";
+import {useDispatch} from "react-redux";
 
 
 //TYPE
 export type AppStoreType = ReturnType<typeof reducers>
 export type AppThunkDispatch = ThunkDispatch<AppStoreType, unknown, ActionType>;
 export type ActionType = LoginAction | PasswordNewAction |
-    PasswordResetAction | ProfileAction | RegistrationAction
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
+    PasswordResetAction | ProfileAction | RegistrationAction | AppAction
+
+
+export type AppThunkType = ThunkDispatch<AppStoreType, void, ActionType>
+export const useAppDispatch = () => useDispatch<AppThunkType>();
+
+export type AppThunk<ReturnType> = ThunkAction<ReturnType,
     AppStoreType,
     unknown,
     ActionType>
@@ -20,6 +27,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
 
 //STATE
 const reducers = combineReducers({
+    app: appReducer,
     login: loginReducer,
     passwordNew: passwordNewReducer,
     passwordReset: passwordResetReducer,
@@ -28,7 +36,6 @@ const reducers = combineReducers({
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))
-
 export default store
 
 

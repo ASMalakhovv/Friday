@@ -1,24 +1,23 @@
-import {useAppDispatch, useAppSelector} from "../../../hooks/useReactRedux";
+import {useAppDispatch, useAppSelector} from "../../../../hooks/useReactRedux";
 import {Navigate} from "react-router-dom";
-import {path} from "../../main/routes/Pages";
+import {path} from "../../../main/routes/Pages";
 import React, {useCallback} from "react";
-import SuperButton from "../../common/SuperButton/SuperButton";
+import SuperButton from "../../../common/SuperButton/SuperButton";
 import s from "../auth/login/Login.module.scss";
-import {ProgressBar} from "../../components/ProgressBar/ProgressBar";
-import PopUpWindowRegistration from "../../components/PopUpWindow/PopUpWindowRegistration/PopUpWindowRegistration";
-import {setErrorLogin} from "../auth/login/login-reducer";
+import {ProgressBar} from "../../../components/ProgressBar/ProgressBar";
+import PopUpWindowRegistration from "../../../components/PopUpWindow/PopUpWindowRegistration/PopUpWindowRegistration";
+import {setErrorLogin} from "../../auth/login/login-reducer";
 
 
 
 
-export function Profile() {
+export function EditProfile() {
 
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
     const isLoading: boolean = useAppSelector(state => state.login.isLoading)
     const profileId: null | string = useAppSelector(state => state.profile._id)
     const profileInfo = useAppSelector(state => state.profile)
     const error: null | string = useAppSelector(state => state.login.error)
-
 
     const closePopUpWindow = useCallback(() => {
         error && dispatch(setErrorLogin(null))
@@ -59,9 +58,6 @@ export function Profile() {
                     <div className={s.header}>
                         <p>e-mail: {profileInfo.email}</p>
                     </div>
-                    <SuperButton>
-                        Edit profile
-                    </SuperButton>
                 </div>
 
             </div>
@@ -70,3 +66,4 @@ export function Profile() {
     )
 }
 
+export default EditProfile;
