@@ -7,6 +7,7 @@ import {PasswordReset} from '../../features/auth/password-reset/PasswordReset';
 import {Profile} from '../../features/profile/Profile';
 import {Register} from '../../features/auth/register/Register';
 import {Test} from '../../features/test/Test';
+import {WithAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 export const path = {
     login: '/login',
@@ -25,7 +26,7 @@ export const Pages = () => {
                 <Route path={path.test} element={<Test/>}/>
                 <Route path={path.login} element={<Login/>}/>
                 <Route path={path.signup} element={<Register/>}/>
-                <Route path={path.profile} element={<Profile/>}/>
+                <Route path={path.profile} element={<WithAuthRedirect><Profile/></WithAuthRedirect>}/>
                 <Route path={path.passwordReset} element={<PasswordReset/>}/>
                 <Route path={path.passwordNew} element={<PasswordNew/>}/>
                 <Route path={'/*'} element={<Error404/>}/>

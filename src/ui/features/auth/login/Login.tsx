@@ -7,18 +7,19 @@ import {path} from "../../../main/routes/Pages";
 import SuperInputText from "../../../common/SuperInputText/SuperInputText";
 import {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {InitStateType, loginReducer, loginTC} from "./loginReducer";
-import {AppStoreType, useAppDispatch} from "../../../../bll/store";
-import {RequestStatusType, setAppErrorAC} from "../../../../app/appReducer";
+import {InitStateType, loginReducer, loginTC} from "./login-reducer";
+import {AppStoreType, useAppDispatch, useThunkDispatch} from "../../../../bll/store";
+import {RequestStatusType, setAppErrorAC} from "../../../../app/app-reducer";
 import {ProgressBar} from "../../../components/ProgressBar/ProgressBar";
 import PopUpWindowRegistration from "../../../components/PopUpWindowRegistration/PopUpWindowRegistration";
+import React from 'react';
 
 
-export function Login() {
+export const Login = () =>  {
     const isLoggedIn = useSelector<AppStoreType, boolean>(state => state.login.isLoggedIn)
     const appError = useSelector<AppStoreType, string | null>(state => state.app.error)
     const appStatus = useSelector<AppStoreType, RequestStatusType>(state => state.app.status)
-    const thunkDispatch = useAppDispatch()
+    const thunkDispatch = useThunkDispatch()
     const actionDispatch = useDispatch()
 
     //==============================================================================
@@ -36,15 +37,12 @@ export function Login() {
     }
     const [typePassword, setTypePassword] = useState('password')
     //==============================================================================
-    const data = {email, password, rememberMe}
 
-    //COMPUTING STYLES
-    const classNameInput = appError ? `${s.error}` : ''
-    const classNameLink = appError ? `${s.disabledLink}` : ''
+
 
     // CALLBACKS
     const onClickLogin = () => {
-        thunkDispatch(loginTC(data))
+        thunkDispatch(loginTC({email, password, rememberMe}))
     }
     const closePopUpWindow = useCallback(() => {
         appError && actionDispatch(setAppErrorAC(null))
@@ -53,6 +51,10 @@ export function Login() {
     const changeTypeForInput = () => {
         setTypePassword(typePassword === 'text' ? 'password' : 'text')
     }
+
+    //COMPUTING STYLES
+    const classNameInput = appError ? `${s.error}` : ''
+    const classNameLink = appError ? `${s.disabledLink}` : ''
 
     return (
         isLoggedIn

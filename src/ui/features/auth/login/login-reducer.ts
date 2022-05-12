@@ -1,7 +1,8 @@
 import {Dispatch} from "redux";
 import {authAPI, LoginParamsType} from "../../../../api/cards-api";
 import {AppThunkDispatch} from "../../../../bll/store";
-import {setAppErrorAC, setAppStatusAC} from "../../../../app/appReducer";
+import {setAppErrorAC, setAppStatusAC} from "../../../../app/app-reducer";
+import {setProfileAC} from "../../profile/profile-reducer";
 
 
 export type LoginAction = ReturnType <typeof setIsLoggedInAC>
@@ -42,6 +43,8 @@ export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
     authAPI.login(data)
         .then(res => {
             dispatch(setIsLoggedInAC(true))
+            dispatch(setProfileAC(res.data))
+            console.log(res.data)
             dispatch(setAppStatusAC('succeeded'))
         })
         .catch(e =>{
